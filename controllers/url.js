@@ -1,5 +1,6 @@
 const { nanoid } = require('nanoid');
 const URL = require('../models/url');
+const PORT = 8000;
 
 async function handleGenerateNewShortURL(req, res) {
     const body = req.body;
@@ -11,7 +12,11 @@ async function handleGenerateNewShortURL(req, res) {
         visitHistory: []
     })
 
-    return res.json({ id: shortId });
+    return res.render("home", {
+        id: shortId,
+        port: PORT
+    })
+    // return res.json({ id: shortId });
 }
 
 async function handleGetAnalytics(req, res) {
