@@ -1,8 +1,11 @@
 const express = require('express');
 const path = require('path');
 const connectToMongoDb = require('./connection');
+
 const routeURL = require('./routes/url');
+const userRoute = require('./routes/user');
 const staticRouter = require('./routes/staticRouter');
+
 const URL = require('./models/url');
 
 const app = express();
@@ -17,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/url", routeURL);
-
+app.use("/user", userRoute);
 app.use("/", staticRouter);
 
 app.use("/:shortId", async (req, res) => {
