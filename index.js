@@ -32,7 +32,8 @@ app.use("/:shortId", async (req, res) => {
             }
         }
     })
-    res.redirect(entry.redirectUrl);
+    if(entry)
+        res.redirect(entry.redirectUrl);
 })
 
 app.listen(PORT, () => {
