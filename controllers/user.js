@@ -19,10 +19,18 @@ async function handleUserLogin(req, res) {
         return res.render('login', {
             error: 'Invalid credentials'
         })
-    const sessionId = uuidv4();
-    setUser(sessionId, user);
-    res.cookie('uid', sessionId);
+    
+    // for stateful authentication
+
+    // const sessionId = uuidv4();
+    // setUser(sessionId, user);
+    // res.cookie('uid', sessionId);
+
+    //for stateless authentication
+    const token = setUser(user);
+    res.cookie('uid', token);
     return res.redirect('/');
+    //return res.json({ token });
 }
 
 module.exports = {
